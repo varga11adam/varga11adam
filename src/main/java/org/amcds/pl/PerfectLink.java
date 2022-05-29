@@ -57,12 +57,7 @@ public class PerfectLink implements Abstraction {
                             .getMessage())
                     .build();
             Message wrapper = Util.wrapMessage(plDeliver,message.getFromAbstractionId(),abstraction,message.getSystemId());
-//            Message wrapper = Message.newBuilder()
-//                    .setSystemId(message.getSystemId())
-//                    .setFromAbstractionId(message.getFromAbstractionId())
-//                    .setToAbstractionId(abstraction)
-//                    .setType(Message.Type.PL_DELIVER)
-//                    .setPlDeliver(plDeliver).build();
+
             System.out.println("With message -- \n" + wrapper.toString());
             this.enqueueMessageToEventLoop(wrapper);
         }else {

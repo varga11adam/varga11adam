@@ -76,13 +76,7 @@ public class Process {
                 .setOwner(owner)
                 .build();
 
-        CommunicationProtocol.Message message = CommunicationProtocol
-                .Message.newBuilder()
-                .setType(CommunicationProtocol.Message.Type.PROC_REGISTRATION)
-                .setProcRegistration(registration)
-                .setFromAbstractionId("app")
-                .setToAbstractionId("app")
-                .build();
+        CommunicationProtocol.Message message = Util.wrapMessage(registration,"app","app","");
 
         NetworkMessage nm = NetworkMessage
                 .newBuilder()
@@ -91,11 +85,7 @@ public class Process {
                 .setSenderListeningPort(listeningPort)
                 .build();
 
-        CommunicationProtocol.Message wm = CommunicationProtocol.Message
-                .newBuilder()
-                .setType(CommunicationProtocol.Message.Type.NETWORK_MESSAGE)
-                .setNetworkMessage(nm)
-                .build();
+        CommunicationProtocol.Message wm = Util.wrapMessage(nm,"","","");
 
         System.out.println(wm);
         DataOutputStream dOut = new DataOutputStream(clientSocket.getOutputStream());

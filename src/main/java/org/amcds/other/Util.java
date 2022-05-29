@@ -63,6 +63,10 @@ public class Util {
             builder.setNetworkMessage((NetworkMessage) message).setType(Message.Type.NETWORK_MESSAGE);
             typeSet = true;
         }
+        if(message.getClass() == ProcRegistration.class){
+            builder.setProcRegistration((ProcRegistration) message).setType(Message.Type.PROC_REGISTRATION);
+            typeSet = true;
+        }
         if(!typeSet){
             return null;
         }
