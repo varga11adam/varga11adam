@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.18'
+        classpath 'com.google.protobuf:protobuf-java:3.20.0'
+    }
+}
+
+plugins {
+    id 'application'
+    id 'java-library'
+    id 'com.google.protobuf' version '0.8.18'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src/main/java'
+        }
+        proto {
+            srcDirs 'src/main/resources/protoc'
+        }
+    }
+}
+
+protobuf {
+    //base directory where you want to generate Java classes
+    generatedFilesBaseDir = "$projectDir/src"
+    // Configure the protoc executable
+    protoc {
+        // Download from repositories
+        artifact = 'com.google.protobuf:protoc:3.0.0'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+application {
+    mainClass = 'org.amcds.Process'
+}
+
+
+dependencies {
+    implementation ('com.google.protobuf:protobuf-java:3.20.0')
+}
